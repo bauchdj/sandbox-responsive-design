@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { Input } from "$lib/components/ui/input/index.js";
 
-	let input;
+	let ref: HTMLInputElement;
 	let props = {
 		type: "text",
 		name: "username",
@@ -13,12 +13,12 @@
 	export let value = "";
 
 	onMount(() => {
-		$:input?.focus();
+		$:ref?.focus();
 	});
 </script>
 
 <Input
-	bind:ref={input}
+	bind:ref
 	bind:value
 	{...props}
 	{...$$restProps}

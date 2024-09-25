@@ -3,7 +3,7 @@
 	import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 	import { Input } from "$lib/components/ui/input/index.js";
 
-	let input;
+	let ref: HTMLInputElement;
 	let showPassword = false;
 	let props = {
 		type: "password",
@@ -23,7 +23,7 @@
 
 <div class="password-input">
 	<Input
-		bind:ref={input}
+		bind:ref
 		bind:value
 		{...props}
 		{...$$restProps}

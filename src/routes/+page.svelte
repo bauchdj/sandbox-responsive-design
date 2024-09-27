@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import InputUsername from "$lib/components/ui/input/input-username.svelte";
-	import InputPassword from "$lib/components/ui/input/input-password.svelte";
+	import * as Card from "$lib/components/ui/card/index.js";
 
 	let posts = [
 		{
@@ -19,9 +18,9 @@
 			tags: ["Vue", "JavaScript", "Coding"],
 			likes: 12,
 			body: `Vue is a progressive JavaScript framework for building user interfaces. It is designed to be incrementally adoptable, meaning that you can start using it for small parts of your application and gradually scale up to a full-fledged single-page application if needed.
-  With Vue, you can easily create reusable components, handle data binding, and manage the state of your application. It provides a simple and intuitive syntax that allows you to declaratively define your UI and easily compose complex UIs from smaller components.
-  Vue also has a rich ecosystem of libraries and tools that can help you with tasks such as routing, state management, and testing. It has a vibrant community and extensive documentation, making it easy to find support and resources.
-  If you're new to Vue, this post will serve as a gentle introduction to the framework, covering the basics and giving you a taste of what Vue can do. By the end of this post, you'll have a good understanding of the core concepts of Vue and be ready to start building your own Vue applications.`,
+With Vue, you can easily create reusable components, handle data binding, and manage the state of your application. It provides a simple and intuitive syntax that allows you to declaratively define your UI and easily compose complex UIs from smaller components.
+Vue also has a rich ecosystem of libraries and tools that can help you with tasks such as routing, state management, and testing. It has a vibrant community and extensive documentation, making it easy to find support and resources.
+If you're new to Vue, this post will serve as a gentle introduction to the framework, covering the basics and giving you a taste of what Vue can do. By the end of this post, you'll have a good understanding of the core concepts of Vue and be ready to start building your own Vue applications.`,
 		},
 		{
 			title: "The Basics of JavaScript",
@@ -30,8 +29,8 @@
 			tags: ["JavaScript", "Coding"],
 			likes: 254,
 			body: `JavaScript is a high-level, interpreted programming language that is widely used for front-end and back-end web development. It is known for its versatility and flexibility, allowing developers to build a wide range of applications, from simple websites to complex web applications.
-  JavaScript is a core technology of the web, and it is supported by all modern web browsers. It is used to add interactivity and dynamic behavior to web pages, enabling features such as form validation, animations, and real-time updates.
-  In this post, we'll cover the basics of JavaScript, including its syntax, data types, control flow, and functions. By the end of this post, you'll have a good understanding of the fundamental concepts of JavaScript and be ready to start writing your own JavaScript code.`,
+JavaScript is a core technology of the web, and it is supported by all modern web browsers. It is used to add interactivity and dynamic behavior to web pages, enabling features such as form validation, animations, and real-time updates.
+In this post, we'll cover the basics of JavaScript, including its syntax, data types, control flow, and functions. By the end of this post, you'll have a good understanding of the fundamental concepts of JavaScript and be ready to start writing your own JavaScript code.`,
 		},
 	];
 
@@ -50,32 +49,32 @@
 
 <svelte:head>
 	<title>My Blog Site</title>
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-	<!-- <script src="__lightserver__/reload-client.js"></script> -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"
-	></script>
 </svelte:head>
 
-<header>
-	<a href="/"><h1>My Blog Site</h1></a>
-	<a href="/top">Top Posts</a>
-	<a href="/archive">Archive</a>
-	<a href="/about">About Me</a>
-</header>
-<main>
+<h1 class="text-3xl font-bold mb-6">Welcome to My Blog</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 	{#each posts as post}
-		<article>
-			<h2>{post.title}</h2>
-			<p>
-				Published: {post.published} | Reading Time: {post.readingTime}
-			</p>
-			<p>Tags: {post.tags.join(", ")}</p>
-			<p>Likes: {post.likes}</p>
-			<p>{post.body}</p>
-		</article>
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>{post.title}</Card.Title>
+				<Card.Description>
+					Published: {post.published} | Reading Time: {post.readingTime}
+				</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<div>
+					<p>{post.body}</p>
+				</div>
+			</Card.Content>
+			<Card.Footer class="flex justify-between">
+				<div>
+					<p>Tags: {post.tags.join(", ")}</p>
+				</div>
+				<div>
+					<p>Likes: {post.likes}</p>
+				</div>
+			</Card.Footer>
+		</Card.Root>
 	{/each}
-</main>
-<footer>
-	Copyright &copy; {new Date().getFullYear()} Hunter Henrichsen. All Rights Reserved.
-</footer>
+</div>

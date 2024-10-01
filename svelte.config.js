@@ -9,6 +9,8 @@ const __dirname = dirname(__filename);
 const basePath = basename(__dirname);
 
 const out = "docs";
+const fallback = "index.html";
+// const fallback = "404.html";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,12 +20,12 @@ const config = {
 
 	kit: {
 		paths: {
-			base: `/${basePath}`,
+			// base: `/${basePath}`,
 		},
 		adapter: adapter({
 			pages: out,
 			assets: out,
-			fallback: "index.html",
+			// fallback,
 			precompress: false,
 			strict: true,
 		}),

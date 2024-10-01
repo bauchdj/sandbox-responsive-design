@@ -6,12 +6,14 @@
 
 <ModeWatcher />
 
-<Navigation />
+<div class="flex flex-col h-screen">
+	<Navigation class="flex-0" />
 
-<main class="flex-grow container mx-auto p-4">
-	<slot />
-</main>
+	<main class="flex-1 w-full px-4 md:px-8 lg:px-10">
+		<slot />
+	</main>
 
-<footer style="height:50px" class="flex items-center m-4">
-	Copyright &copy; {new Date().getFullYear()} Hunter Henrichsen. All Rights Reserved.
-</footer>
+	<footer class="flex-0 flex items-center h-[100px] p-8">
+		Copyright &copy; {new Date().getFullYear()} David Bauch. All Rights Reserved.
+	</footer>
+</div>

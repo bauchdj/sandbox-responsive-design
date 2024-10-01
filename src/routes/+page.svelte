@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import * as Card from "$lib/components/ui/card/index.js";
+	import APIImage from "$lib/components/APIImage.svelte";
 
 	let posts = [
 		{
 			title: "About Functional Programming",
+			author: "Jim Robert",
 			published: "2024-03-14",
 			readingTime: "5 min",
 			tags: ["Functional Programming", "Coding"],
@@ -13,6 +14,7 @@
 		},
 		{
 			title: "Intro to Vue",
+			author: "Bobby Boy",
 			published: "2024-03-14",
 			readingTime: "5 min",
 			tags: ["Vue", "JavaScript", "Coding"],
@@ -24,6 +26,7 @@ If you're new to Vue, this post will serve as a gentle introduction to the frame
 		},
 		{
 			title: "The Basics of JavaScript",
+			author: "Jeremy Clarkson",
 			published: "2024-03-14",
 			readingTime: "5 min",
 			tags: ["JavaScript", "Coding"],
@@ -33,18 +36,6 @@ JavaScript is a core technology of the web, and it is supported by all modern we
 In this post, we'll cover the basics of JavaScript, including its syntax, data types, control flow, and functions. By the end of this post, you'll have a good understanding of the fundamental concepts of JavaScript and be ready to start writing your own JavaScript code.`,
 		},
 	];
-
-	async function randomUnsplash() {
-		const random = Math.floor(Math.random() * 1000);
-		const res = await fetch(
-			`https://source.unsplash.com/random/1200x400?sig=${random}`
-		);
-		return res.url;
-	}
-
-	onMount(() => {
-		// window.randomUnsplash = randomUnsplash;
-	});
 </script>
 
 <svelte:head>
@@ -57,14 +48,15 @@ In this post, we'll cover the basics of JavaScript, including its syntax, data t
 	{#each posts as post}
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>{post.title}</Card.Title>
+				<Card.Title>{post.title} by {post.author}</Card.Title>
 				<Card.Description>
 					Published: {post.published} | Reading Time: {post.readingTime}
 				</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				<div>
-					<p>{post.body}</p>
+				<p>{post.body}</p>
+				<div class="flex justify-center pt-4">
+					<APIImage />
 				</div>
 			</Card.Content>
 			<Card.Footer class="flex justify-between">

@@ -12,6 +12,6 @@
 	<slot />
 </main>
 
-<footer>
+<footer style="height:50px" class="flex items-center m-4">
 	Copyright &copy; {new Date().getFullYear()} Hunter Henrichsen. All Rights Reserved.
 </footer>

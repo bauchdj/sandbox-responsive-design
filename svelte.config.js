@@ -1,17 +1,5 @@
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-import { dirname, basename } from "path";
-import { fileURLToPath } from "url";
-
-// Get the directory name of the current module (the parent directory)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const basePath = basename(__dirname);
-
-const out = "docs";
-// const fallback = "index.html";
-const fallback = "404.html";
-// const fallback = null;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,19 +8,12 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		paths: {
-			base: `/${basePath}`,
-		},
 		adapter: adapter({
-			pages: out,
-			assets: out,
-			fallback,
-			precompress: false,
-			strict: true,
+			fallback: "404.html",
 		}),
-	},
-	prerender: {
-		entries: ["*"],
+		paths: {
+			base: process.argv.includes("dev") ? "" : process.env.BASE_PATH,
+		},
 	},
 };
 

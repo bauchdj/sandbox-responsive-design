@@ -8,6 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const basePath = basename(__dirname);
 
+const out = "docs";
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -19,12 +21,11 @@ const config = {
 			base: `/${basePath}`,
 		},
 		adapter: adapter({
-			pages: "build",
-			assets: "build",
+			pages: out,
+			assets: out,
 			fallback: "index.html",
 			precompress: false,
 			strict: true,
-			out: "build",
 		}),
 	},
 };

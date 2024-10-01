@@ -1,5 +1,6 @@
 <script>
 	let photoUrl = "";
+	const photoAlt = "Photo from Lorem Picsum";
 	let loading = true;
 	let error = false;
 
@@ -31,5 +32,5 @@
 {:else if error}
 	<p>Error loading photo!</p>
 {:else}
-	<img src="{photoUrl}" alt="Photo from Lorem Picsum" />
+	<img src="{photoUrl}" alt="{photoAlt}" />
 {/if}

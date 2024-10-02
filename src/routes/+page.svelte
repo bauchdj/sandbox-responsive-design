@@ -84,17 +84,21 @@ In this post, we’ll explain what the DOM is, how it represents web pages, and 
 
 <h1 class="text-center text-3xl font-bold mb-6">Welcome to My Blog</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div
+	class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(700px,1fr))] gap-6"
+>
 	{#each posts as post}
-		<Card.Root>
+		<Card.Root class="flex flex-col">
 			<Card.Header>
 				<Card.Title>{post.title} by {post.author}</Card.Title>
 				<Card.Description>
 					Published: {post.published} | Reading Time: {post.readingTime}
 				</Card.Description>
 			</Card.Header>
-			<Card.Content>
-				<p>{post.body}</p>
+			<Card.Content class="flex-1">
+				<div class="flex justify-center pt-4">
+					<p>{post.body}</p>
+				</div>
 				<div class="flex justify-center pt-4">
 					<APIImage />
 				</div>
@@ -110,3 +114,9 @@ In this post, we’ll explain what the DOM is, how it represents web pages, and 
 		</Card.Root>
 	{/each}
 </div>
+
+<style>
+	p {
+		max-width: 65ch;
+	}
+</style>
